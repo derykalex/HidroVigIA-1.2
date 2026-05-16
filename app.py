@@ -1,20 +1,17 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask(__name__)
+# Inicializa o aplicativo Flask
+app = Flask(__name__, template_folder="modelos")
 
+# Rota principal
 @app.route('/')
 def home():
-    return """
-    <h1>🌊 HidroVigIA</h1>
-    <h2>Sistema Participativo de Monitoramento da Água</h2>
-    <p>Projeto iniciado com sucesso no GitHub Codespaces.</p>
-    <ul>
-        <li>Cadastro de análises</li>
-        <li>Controle de pH</li>
-        <li>Registro de turbidez</li>
-        <li>Monitoramento comunitário</li>
-    </ul>
-    """
+    return render_template("index.html")
 
+# Execução do sistema
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",   # Permite acesso externo no Codespaces
+        port=5000,        # Porta padrão
+        debug=True        # Modo desenvolvedor
+    )
